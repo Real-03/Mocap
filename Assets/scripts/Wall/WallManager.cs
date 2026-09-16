@@ -2,29 +2,23 @@ using UnityEngine;
 
 public class WallManager : MonoBehaviour
 {
-    [Header("Collider da parede")]
+    [Header("Target")]
     [SerializeField] private Collider targetCollider;
 
-    [Header("Precisão")]
-    [Range(3, 12)]
-    [SerializeField] private int samplesPerAxis = 6;
-
-    [Header("Intervalo de verificação")]
-    [Range(0.05f, 0.5f)]
-    [SerializeField] private float checkInterval = 0.1f;
-
-    [Header("Erro máximo permitido")]
+    [Header("Erro permitido")]
     [Range(0f, 100f)]
     [SerializeField] private float maxErrorPercentage = 10f;
 
+    [Header("Precisão")]
+    [Range(5, 30)]
+    [SerializeField] private int samplesPerAxis = 15;
+
     [Header("Debug")]
-    [SerializeField] private bool debugLogs = false;
+    [SerializeField] private bool showDebug = true;
 
     private Collider playerCollider;
 
     private float currentPercentage;
-    private float timer;
-
     private bool playerInside;
 
     private void Awake()
@@ -33,7 +27,7 @@ public class WallManager : MonoBehaviour
             targetCollider = GetComponent<Collider>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (!other.CompareTag("Player"))
             return;
@@ -41,64 +35,47 @@ public class WallManager : MonoBehaviour
         playerCollider = other;
         playerInside = true;
 
-        timer = 0f;
+        currentPercentage = CalculateIntersection();
 
-        CalculatePercentage();
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (!playerInside)
-            return;
-
-        if (other != playerCollider)
-            return;
-
-        timer += Time.deltaTime;
-
-        if (timer >= checkInterval)
+        if (showDebug)
         {
-            timer = 0f;
-
-            CalculatePercentage();
+            Debug.Log(
+                "Corpo dentro da forma: " +
+                currentPercentage.ToString("F1") +
+                "%"
+            );
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other != playerCollider)
-            return;
-
-        playerInside = false;
-        playerCollider = null;
-
-        currentPercentage = 0f;
-        timer = 0f;
+        if (other == playerCollider)
+        {
+            playerInside = false;
+            playerCollider = null;
+            currentPercentage = 0f;
+        }
     }
 
-    private void CalculatePercentage()
+    private float CalculateIntersection()
     {
         if (playerCollider == null)
-            return;
+            return 0f;
 
         Bounds bounds = playerCollider.bounds;
 
-        int totalPoints = 0;
-        int insidePoints = 0;
+        int totalSamples = 0;
+        int insideSamples = 0;
 
-        int resolution = samplesPerAxis;
-
-        for (int x = 0; x < resolution; x++)
+        for (int x = 0; x < samplesPerAxis; x++)
         {
-            float fx = x / (float)(resolution - 1);
-
-            for (int y = 0; y < resolution; y++)
+            for (int y = 0; y < samplesPerAxis; y++)
             {
-                float fy = y / (float)(resolution - 1);
-
-                for (int z = 0; z < resolution; z++)
+                for (int z = 0; z < samplesPerAxis; z++)
                 {
-                    float fz = z / (float)(resolution - 1);
+                    float fx = x / (float)(samplesPerAxis - 1);
+                    float fy = y / (float)(samplesPerAxis - 1);
+                    float fz = z / (float)(samplesPerAxis - 1);
 
                     Vector3 point = new Vector3(
                         Mathf.Lerp(bounds.min.x, bounds.max.x, fx),
@@ -106,48 +83,44 @@ public class WallManager : MonoBehaviour
                         Mathf.Lerp(bounds.min.z, bounds.max.z, fz)
                     );
 
-                    if (!IsInsideCollider(point, playerCollider))
-                        continue;
-
-                    totalPoints++;
-
-                    if (IsInsideCollider(point, targetCollider))
+                    // Verifica se o ponto pertence ao MeshCollider
+                    if (!IsPointInsideCollider(
+                        point,
+                        playerCollider))
                     {
-                        insidePoints++;
+                        continue;
+                    }
+
+                    totalSamples++;
+
+                    // Verifica se também está dentro da forma
+                    if (IsPointInsideCollider(
+                        point,
+                        targetCollider))
+                    {
+                        insideSamples++;
                     }
                 }
             }
         }
 
-        if (totalPoints == 0)
-        {
-            currentPercentage = 0f;
-            return;
-        }
+        if (totalSamples == 0)
+            return 0f;
 
-        currentPercentage =
-            (insidePoints / (float)totalPoints) * 100f;
-
-        if (debugLogs)
-        {
-            Debug.Log(
-                "Colisão: " +
-                currentPercentage.ToString("F1") +
-                "%"
-            );
-        }
+        return (insideSamples / (float)totalSamples) * 100f;
     }
 
-    private bool IsInsideCollider(
+    private bool IsPointInsideCollider(
         Vector3 point,
         Collider collider)
     {
-        Vector3 closestPoint =
+        Vector3 closest =
             collider.ClosestPoint(point);
 
-        return Vector3.SqrMagnitude(
-            point - closestPoint
-        ) < 0.000001f;
+        float distance =
+            Vector3.Distance(point, closest);
+
+        return distance < 0.001f;
     }
 
     public void CheckResult()
@@ -158,21 +131,29 @@ public class WallManager : MonoBehaviour
             return;
         }
 
+        Debug.Log(
+            "========================"
+        );
+
+        Debug.Log(
+            "COLISÃO: " +
+            currentPercentage.ToString("F1") +
+            "%"
+        );
+
+        Debug.Log(
+            "LIMITE: " +
+            maxErrorPercentage +
+            "%"
+        );
+
         if (currentPercentage <= maxErrorPercentage)
         {
-            Debug.Log(
-                "PASSOU! " +
-                currentPercentage.ToString("F1") +
-                "% de erro"
-            );
+            Debug.Log("PASSOU! ✅");
         }
         else
         {
-            Debug.Log(
-                "FALHOU! " +
-                currentPercentage.ToString("F1") +
-                "% de erro"
-            );
+            Debug.Log("FALHOU! ❌");
         }
     }
 
