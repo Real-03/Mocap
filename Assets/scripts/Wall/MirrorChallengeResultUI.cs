@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Liga o resultado do MirrorWallDetector a uma UI simples (UnityEngine.UI.Text).
@@ -16,11 +16,11 @@ public class MirrorChallengeResultUI : MonoBehaviour
 
     [Header("UI (opcional, para o estado ao vivo)")]
     [Tooltip("Texto atualizado continuamente com a percentagem atual. Deixar vazio se não quiseres feedback ao vivo.")]
-    [SerializeField] private Text livePercentageText;
+    [SerializeField] private TMP_Text livePercentageText;
 
     [Header("UI (para a verificação pontual)")]
     [Tooltip("Texto onde aparece PASSOU / FALHOU quando TriggerFinalCheck() é chamado.")]
-    [SerializeField] private Text finalResultText;
+    [SerializeField] private TMP_Text finalResultText;
 
     private void OnEnable()
     {
