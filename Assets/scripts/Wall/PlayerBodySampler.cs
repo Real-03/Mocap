@@ -10,6 +10,10 @@ using System.Collections.Generic;
 /// </summary>
 public class PlayerBodySampler : MonoBehaviour
 {
+    /// <summary>Referência global simples para o jogador — usada por paredes geradas
+    /// dinamicamente para se ligarem sozinhas sem configuração manual no Inspector.</summary>
+    public static PlayerBodySampler Instance { get; private set; }
+
     [Header("Fonte da mesh (escolher UMA)")]
     [Tooltip("Usar isto se o corpo for uma Skinned Mesh (motion capture).")]
     [SerializeField] private SkinnedMeshRenderer skinnedRenderer;
@@ -34,6 +38,12 @@ public class PlayerBodySampler : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("[PlayerBodySampler] Já existe um PlayerBodySampler.Instance — a substituir pelo mais recente.", this);
+        }
+        Instance = this;
+
         useSkinned = skinnedRenderer != null;
         Mesh sourceMesh = useSkinned ? skinnedRenderer.sharedMesh : staticMeshFilter.sharedMesh;
         sourceTransform = useSkinned ? skinnedRenderer.transform : staticMeshFilter.transform;
@@ -96,5 +106,10 @@ public class PlayerBodySampler : MonoBehaviour
         }
 
         return worldSamplePoints;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 }

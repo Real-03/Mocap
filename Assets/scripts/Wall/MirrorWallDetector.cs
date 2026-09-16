@@ -50,9 +50,34 @@ public class MirrorWallDetector : MonoBehaviour
     private bool[] lastPointBlocked;
     private Vector3[] lastWorldPoints;
     private float wallHalfDepth;
+     public void AutoConfigure()
+    {
+        if (wallCollider == null) wallCollider = GetComponent<Collider>();
+        if (playerSampler == null) playerSampler = PlayerBodySampler.Instance;
 
+        if (playerSampler == null)
+        {
+            Debug.LogError("[MirrorWallDetector] Não foi encontrado nenhum PlayerBodySampler.Instance. Confirma que o jogador já existe e está ativo antes desta parede ser criada.", this);
+            enabled = false;
+            return;
+        }
+
+        if (wallLayerMask.value == 0)
+        {
+            wallLayerMask = 1 << gameObject.layer;
+        }
+
+
+        // Reset de estado, útil se este componente for reativado num objeto reaproveitado.
+        timer = 0f;
+        lastPointBlocked = null;
+        lastWorldPoints = null;
+        CurrentCollidingPercentage = 0f;
+        LastCheckPassed = true;
+    }
     private void Awake()
     {
+        AutoConfigure();
         if (wallCollider == null) wallCollider = GetComponent<Collider>();
 
         // Estima a "profundidade" a percorrer pelo raio a partir do próprio bounds da parede.
