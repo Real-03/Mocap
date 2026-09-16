@@ -43,6 +43,20 @@ namespace BeatStyleGame
         [Header("Velocidade dos objetos")]
         public float velocidadeObjetos = 8f;
 
+        [Header("Dificuldade")]
+
+        [Range(0f, 1f)]
+        [Tooltip("Probabilidade (0 a 1) de um cubo vir acompanhado de um segundo cubo simultâneo, na dificuldade Fácil")]
+        public float probabilidadeCuboDuploFacil = 0f;
+
+        [Range(0f, 1f)]
+        [Tooltip("Probabilidade (0 a 1) de um cubo vir acompanhado de um segundo cubo simultâneo, na dificuldade Média")]
+        public float probabilidadeCuboDuploMedio = 0.2f;
+
+        [Range(0f, 1f)]
+        [Tooltip("Probabilidade (0 a 1) de um cubo vir acompanhado de um segundo cubo simultâneo, na dificuldade Difícil")]
+        public float probabilidadeCuboDuploDificil = 0.45f;
+
         private readonly Queue<TipoObstaculo> _sequencia = new Queue<TipoObstaculo>();
         private Coroutine _rotinaSpawn;
 
@@ -117,11 +131,28 @@ namespace BeatStyleGame
 
         private void GerarCubo()
         {
+            SpawnPoint primeiroPonto = GerarUmCubo(null);
+
+
+        }
+
+        /// <summary>
+        /// Devolve a probabilidade de cubo duplo correspondente ao nível de dificuldade atual.
+        /// </summary>
+        
+
+        /// <summary>
+        /// Gera um único cubo. Se pontoAEvitar for passado (caso de um cubo duplo),
+        /// garante que o segundo cubo não aparece exatamente no mesmo ponto do primeiro.
+        /// Devolve o SpawnPoint usado (ou null se não foi possível gerar nada).
+        /// </summary>
+        private SpawnPoint GerarUmCubo(SpawnPoint pontoAEvitar)
+        {
             List<GameObject> prefabsValidos = cubosPrefabs.FindAll(p => p != null);
             if (prefabsValidos.Count == 0)
             {
                 Debug.LogWarning("SpawnManager: lista de cubos está vazia ou só tem referências destruídas/em falta. Confirma que arrastaste Prefabs da pasta Assets, e não objetos da Hierarchy.");
-                return;
+                return null;
             }
 
             // Tenta algumas vezes encontrar uma combinação prefab + ponto compatível,
@@ -137,15 +168,16 @@ namespace BeatStyleGame
                     continue;
                 }
 
-                List<SpawnPoint> candidatos = pontosSpawn.FindAll(p => p.SuportaCubo(info.membroAlvo));
+                List<SpawnPoint> candidatos = pontosSpawn.FindAll(p => p.SuportaCubo(info.membroAlvo) && p != pontoAEvitar);
                 if (candidatos.Count == 0) continue;
 
                 SpawnPoint ponto = candidatos[Random.Range(0, candidatos.Count)];
                 Instanciar(prefab, ponto, TipoObstaculo.Cubo);
-                return;
+                return ponto;
             }
 
             Debug.LogWarning("SpawnManager: não foi possível encontrar um ponto compatível para nenhum cubo sorteado.");
+            return null;
         }
 
         private void GerarParede()

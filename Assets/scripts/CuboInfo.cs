@@ -28,5 +28,7 @@ namespace BeatStyleGame
                 default: return Color.gray;
             }
         }
+
+    
     }
 }

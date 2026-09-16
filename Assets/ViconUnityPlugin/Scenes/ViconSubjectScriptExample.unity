@@ -320,6 +320,10 @@ PrefabInstance:
       propertyPath: HostName
       value: 192.168.242.108
       objectReference: {fileID: 0}
+    - target: {fileID: 114105437160752742, guid: d221fcd7e2204224482131e4cc789b6e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -399,6 +403,91 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &360893108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360893104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb322e9cd0becf24f8000d2c69614838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.TEste
+  membro: 0
+  aoAcertar:
+    m_PersistentCalls:
+      m_Calls: []
+  aoErrar:
+    m_PersistentCalls:
+      m_Calls: []
+  destruirCuboAoAcertar: 1
+--- !u!1001 &394856056
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_Name
+      value: ViconMale
+      objectReference: {fileID: 0}
+    - target: {fileID: 100174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.99922
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.99229
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2cad90802f5cb9e47859335152a6d194, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
 --- !u!850595691 &414434122
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -623,6 +712,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.24953192, z: 0.1}
   m_Center: {x: 0, y: 0.07476608, z: 0.000000025061144}
+--- !u!114 &782968228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782968224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb322e9cd0becf24f8000d2c69614838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.TEste
+  membro: 2
+  aoAcertar:
+    m_PersistentCalls:
+      m_Calls: []
+  aoErrar:
+    m_PersistentCalls:
+      m_Calls: []
+  destruirCuboAoAcertar: 1
 --- !u!1001 &855379187
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -688,16 +797,28 @@ PrefabInstance:
       addedObject: {fileID: 1754966797}
     - targetCorrespondingSourceObject: {fileID: 1645898859189091904, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 782968228}
+    - targetCorrespondingSourceObject: {fileID: 1645898859189091904, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 782968226}
     - targetCorrespondingSourceObject: {fileID: -649365422237708934, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1034349717}
+    - targetCorrespondingSourceObject: {fileID: -649365422237708934, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1034349715}
+    - targetCorrespondingSourceObject: {fileID: 3038522690444808136, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 360893108}
     - targetCorrespondingSourceObject: {fileID: 3038522690444808136, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 360893106}
     - targetCorrespondingSourceObject: {fileID: -8479181914774887298, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 160002472}
+    - targetCorrespondingSourceObject: {fileID: 8250629191074435859, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1480441337}
     - targetCorrespondingSourceObject: {fileID: 8250629191074435859, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1480441335}
@@ -793,6 +914,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.24953192, z: 0.1}
   m_Center: {x: 0, y: 0.07476608, z: 0.000000025061144}
+--- !u!114 &1034349717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034349713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb322e9cd0becf24f8000d2c69614838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.TEste
+  membro: 3
+  aoAcertar:
+    m_PersistentCalls:
+      m_Calls: []
+  aoErrar:
+    m_PersistentCalls:
+      m_Calls: []
+  destruirCuboAoAcertar: 1
 --- !u!1 &1236988851
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,71 +971,6 @@ Transform:
   - {fileID: 2082879306}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1266156811
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 100174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_Name
-      value: ViconMale
-      objectReference: {fileID: 0}
-    - target: {fileID: 100174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.16169
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.34025
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400174, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2cad90802f5cb9e47859335152a6d194, type: 2}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1e15161907fc4494b9eb26b10c19590d, type: 3}
 --- !u!1 &1323292415
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +1045,26 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1480441337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480441333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb322e9cd0becf24f8000d2c69614838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.TEste
+  membro: 1
+  aoAcertar:
+    m_PersistentCalls:
+      m_Calls: []
+  aoErrar:
+    m_PersistentCalls:
+      m_Calls: []
+  destruirCuboAoAcertar: 1
 --- !u!1 &1496863299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1228,9 @@ MonoBehaviour:
   tentativasEscolhaParede: 5
   tentativasEscolhaCubo: 5
   velocidadeObjetos: 4
+  probabilidadeCuboDuploFacil: 0
+  probabilidadeCuboDuploMedio: 0.2
+  probabilidadeCuboDuploDificil: 0.45
 --- !u!4 &1502695355
 Transform:
   m_ObjectHideFlags: 0
@@ -1319,6 +1418,6 @@ SceneRoots:
   - {fileID: 284067412}
   - {fileID: 855379187}
   - {fileID: 1496863303}
-  - {fileID: 1266156811}
   - {fileID: 1502695355}
   - {fileID: 1236988852}
+  - {fileID: 394856056}
