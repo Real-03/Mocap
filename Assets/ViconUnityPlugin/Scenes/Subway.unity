@@ -329,54 +329,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d221fcd7e2204224482131e4cc789b6e, type: 3}
---- !u!1 &348173854
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 348173856}
-  - component: {fileID: 348173855}
-  m_Layer: 0
-  m_Name: Spawnpoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &348173855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348173854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e63511b5b1cb240a49242ac42626c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.SpawnPoint
-  indiceFaixa: 0
-  permiteCubos: 1
-  membrosCubosSuportados: 00000000
-  tiposParedeSuportados: 
---- !u!4 &348173856
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348173854}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.50000006, y: 0.49999997, z: 0.4999995, w: 0.5000006}
-  m_LocalPosition: {x: 0.48881984, y: 1.90773, z: 3.7662797}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1236988852}
-  m_LocalEulerAnglesHint: {x: 180, y: -90, z: -90}
 --- !u!1 &360893104 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3038522690444808136, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
@@ -686,6 +638,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &737388962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 737388963}
+  - component: {fileID: 737388964}
+  m_Layer: 0
+  m_Name: Parede (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &737388963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737388962}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.69, y: -0.01999998, z: -4.5099998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1236988852}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &737388964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737388962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e63511b5b1cb240a49242ac42626c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.SpawnPoint
+  indiceFaixa: 0
+  permiteCubos: 0
+  membrosCubosSuportados: 
+  tiposParedeSuportados: 02000000
 --- !u!1 &782968224 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1645898859189091904, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
@@ -845,7 +845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &860686666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,7 +871,7 @@ Transform:
   m_GameObject: {fileID: 860686665}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.48881984, y: 0.98773, z: 3.7662797}
+  m_LocalPosition: {x: 0.08, y: -0.02, z: -4.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -959,16 +959,13 @@ Transform:
   m_GameObject: {fileID: 1236988851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.63882, y: 0.11227, z: 7.69364}
+  m_LocalPosition: {x: -3.63882, y: 0.11227, z: 16.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 348173856}
   - {fileID: 860686667}
-  - {fileID: 2091877909}
   - {fileID: 1323292417}
-  - {fileID: 1625898306}
-  - {fileID: 2082879306}
+  - {fileID: 737388963}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1323292415
@@ -987,7 +984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1323292416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,7 +1010,7 @@ Transform:
   m_GameObject: {fileID: 1323292415}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.9188199, y: 0.98773, z: 3.7662797}
+  m_LocalPosition: {x: 1.41, y: -0.01999998, z: -4.5099998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1078,7 +1075,7 @@ GameObject:
   - component: {fileID: 1496863301}
   - component: {fileID: 1496863300}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: BasePlayerCanWalk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1208,23 +1205,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.SpawnManager
   paredesPrefabs:
-  - {fileID: 5120904722779671981, guid: 0a11c7cc1c4696047b3c6f3ff5a6aeec, type: 3}
-  - {fileID: 3213295416156124188, guid: e06d36a5512483a4e94efb5b2ebd0c02, type: 3}
-  cubosPrefabs:
-  - {fileID: 281531830152105560, guid: a3f7f81be50e75c42b62db7e222a38dd, type: 3}
-  - {fileID: 183596989494572137, guid: 9f8ae2d4e61c29b4d9ae215965422fcb, type: 3}
-  - {fileID: 5522184625310844397, guid: f90e7e68adbb1784f884fca4c11bc105, type: 3}
-  - {fileID: 3909859393462989461, guid: a374d9ffa4e5f3a4899856d4f5a8fa0c, type: 3}
+  - {fileID: 4506846782090760262, guid: 72fc4f70bb5c2ca40a65a8c21695795b, type: 3}
+  - {fileID: 6121327815713653233, guid: 390862d29e8de3c48a016561c707078b, type: 3}
+  - {fileID: 7781900777718764554, guid: 597c48b78c7feef4183b9c991c48caf9, type: 3}
+  cubosPrefabs: []
   pontosSpawn:
-  - {fileID: 348173855}
-  - {fileID: 2091877908}
-  - {fileID: 1625898305}
-  - {fileID: 2082879305}
   - {fileID: 860686666}
   - {fileID: 1323292416}
-  cubosPorParede: 10
+  - {fileID: 737388964}
+  cubosPorParede: 1
   intervaloSpawn: 0.5
-  tamanhoBlocoSequencia: 33
+  tamanhoBlocoSequencia: 0
   tentativasEscolhaParede: 5
   tentativasEscolhaCubo: 5
   velocidadeObjetos: 4
@@ -1246,54 +1237,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1625898304
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1625898306}
-  - component: {fileID: 1625898305}
-  m_Layer: 0
-  m_Name: Spawnpoint (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1625898305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625898304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e63511b5b1cb240a49242ac42626c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.SpawnPoint
-  indiceFaixa: 0
-  permiteCubos: 1
-  membrosCubosSuportados: 0300000001000000
-  tiposParedeSuportados: 
---- !u!4 &1625898306
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625898304}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 1.9188199, y: 0.34773, z: 3.7662797}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1236988852}
-  m_LocalEulerAnglesHint: {x: 180, y: -90, z: -90}
 --- !u!1 &1754966795 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
@@ -1313,102 +1256,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Scripts::UnityVicon.SubjectScript
   SubjectName: P1
   Client: {fileID: 992756825}
---- !u!1 &2082879304
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2082879306}
-  - component: {fileID: 2082879305}
-  m_Layer: 0
-  m_Name: Spawnpoint (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2082879305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082879304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e63511b5b1cb240a49242ac42626c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.SpawnPoint
-  indiceFaixa: 0
-  permiteCubos: 1
-  membrosCubosSuportados: 0000000002000000
-  tiposParedeSuportados: 
---- !u!4 &2082879306
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082879304}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.38881993, y: 0.34773, z: 3.7662797}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1236988852}
-  m_LocalEulerAnglesHint: {x: 180, y: -90, z: -90}
---- !u!1 &2091877907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2091877909}
-  - component: {fileID: 2091877908}
-  m_Layer: 0
-  m_Name: Spawnpoint (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2091877908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091877907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e63511b5b1cb240a49242ac42626c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.SpawnPoint
-  indiceFaixa: 0
-  permiteCubos: 1
-  membrosCubosSuportados: 01000000
-  tiposParedeSuportados: 
---- !u!4 &2091877909
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091877907}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 1.9188199, y: 1.90773, z: 3.7662797}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1236988852}
-  m_LocalEulerAnglesHint: {x: 180, y: -90, z: -90}
 --- !u!4 &6102753397660033893
 Transform:
   m_ObjectHideFlags: 0

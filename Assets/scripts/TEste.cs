@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,6 +27,7 @@ namespace BeatStyleGame
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("Olá Unity!");
             CuboInfo cubo = other.GetComponent<CuboInfo>();
             if (cubo == null) return; // não é um cubo (ex: parede, chão), ignora
 
