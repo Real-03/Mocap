@@ -361,7 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114105437160752742, guid: d221fcd7e2204224482131e4cc789b6e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1156,7 +1156,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 284067412}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 344edad2a970e9a4a9ce067c065d5d60, type: 3}
   m_Name: 
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384275511}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e00898c33756f94caafd87ca8fda2f1, type: 3}
   m_Name: 
@@ -1703,7 +1703,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754966795}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e00898c33756f94caafd87ca8fda2f1, type: 3}
   m_Name: 
@@ -2078,14 +2078,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead614ecf1635754a81a270c7f88c6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorWallSpawner
-  wallPrefab: {fileID: 5245642787287741835, guid: b07272339ca9c5a40b11a4d3732eed4d, type: 3}
+  wallPrefab: {fileID: -4209774584701487045, guid: e069f1adc459e7b4ca20da2e02710b45, type: 3}
   spawnPoint: {fileID: 8099228513147039072}
-  spawnInterval: 10
+  spawnInterval: 100
   moveSpeed: 0.5
   autoDirectionTowardsPlayer: 1
   manualMoveDirection: {x: 0, y: 0, z: 1}
   ignoreHeightDifference: 1
-  resultUI: {fileID: 2018329519}
+  resultUI: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
