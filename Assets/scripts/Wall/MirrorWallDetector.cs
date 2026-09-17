@@ -54,6 +54,8 @@ public class MirrorWallDetector : MonoBehaviour
     private bool[] lastPointBlocked;
     private Vector3[] lastWorldPoints;
     private float wallHalfDepth;
+    private Vector3 localDepthAxis;
+    private float depthAxisCenterLocal;
 
     public void AutoConfigure()
     {
@@ -72,10 +74,12 @@ public class MirrorWallDetector : MonoBehaviour
             wallLayerMask = 1 << gameObject.layer;
         }
 
-        // Estima a "profundidade" a percorrer pelo raio a partir do bounds do Collider
-        // de referência. Não é usado para restringir QUEM pode bloquear — só para
-        // dimensionar o comprimento e a origem do raio.
-        wallHalfDepth = Mathf.Max(0.1f, wallCollider.bounds.extents.magnitude * 0.5f);
+        // Deteta automaticamente qual o eixo local mais "fino" da mesh — esse é quase
+        // sempre o eixo de espessura de um painel/parede achatada, independentemente
+        // da orientação com que a mesh foi importada (Blender, Maya, etc. usam
+        // convenções de eixos diferentes do Unity, e isto evita teres de configurar
+        // isso à mão por cada mesh nova).
+        ComputeDepthAxisAndThickness();
 
         // Reset de estado, útil se este componente for reativado num objeto reaproveitado.
         timer = 0f;
@@ -83,6 +87,58 @@ public class MirrorWallDetector : MonoBehaviour
         lastWorldPoints = null;
         CurrentCollidingPercentage = 0f;
         LastCheckPassed = true;
+    }
+
+    /// <summary>
+    /// Mede a mesh do wallCollider (se for um MeshCollider) em espaço LOCAL — não
+    /// afetado pela rotação do transform — e usa o eixo com menor extensão como
+    /// direção do raio. Isto é o que faz o sistema funcionar com qualquer mesh
+    /// importada, e não só com um cubo perfeito (que por acaso tem a mesma
+    /// espessura em todos os eixos, escondendo o problema).
+    /// </summary>
+    private void ComputeDepthAxisAndThickness()
+    {
+        Vector3 localExtents;
+        Vector3 localCenter;
+
+        if (wallCollider is MeshCollider meshCollider && meshCollider.sharedMesh != null)
+        {
+            // bounds da mesh em espaço LOCAL DA MESH — não depende da posição do pivot
+            // do objeto, por isso funciona mesmo que o artista tenha colocado o pivot
+            // na base, num canto, ou em qualquer sítio que não seja o centro.
+            Bounds meshBounds = meshCollider.sharedMesh.bounds;
+            localExtents = Vector3.Scale(meshBounds.extents, wallCollider.transform.lossyScale);
+            localCenter = Vector3.Scale(meshBounds.center, wallCollider.transform.lossyScale);
+        }
+        else
+        {
+            // Fallback para Box/Capsule/etc.: aproxima a partir do bounds mundial,
+            // convertendo o centro para espaço local do transform.
+            Bounds worldBounds = wallCollider.bounds;
+            localExtents = worldBounds.extents;
+            localCenter = wallCollider.transform.InverseTransformPoint(worldBounds.center);
+        }
+
+        localExtents = new Vector3(Mathf.Abs(localExtents.x), Mathf.Abs(localExtents.y), Mathf.Abs(localExtents.z));
+
+        if (localExtents.x <= localExtents.y && localExtents.x <= localExtents.z)
+        {
+            localDepthAxis = Vector3.right;
+            wallHalfDepth = Mathf.Max(0.05f, localExtents.x);
+            depthAxisCenterLocal = localCenter.x;
+        }
+        else if (localExtents.y <= localExtents.x && localExtents.y <= localExtents.z)
+        {
+            localDepthAxis = Vector3.up;
+            wallHalfDepth = Mathf.Max(0.05f, localExtents.y);
+            depthAxisCenterLocal = localCenter.y;
+        }
+        else
+        {
+            localDepthAxis = Vector3.forward;
+            wallHalfDepth = Mathf.Max(0.05f, localExtents.z);
+            depthAxisCenterLocal = localCenter.z;
+        }
     }
 
     private void Awake()
@@ -141,16 +197,19 @@ public class MirrorWallDetector : MonoBehaviour
         Transform wallT = wallCollider.transform;
         int blockedCount = 0;
         float rayLength = wallHalfDepth * 6f;
+        Vector3 rayDirWorld = wallT.TransformDirection(localDepthAxis).normalized;
 
         for (int i = 0; i < points.Length; i++)
         {
             Vector3 local = wallT.InverseTransformPoint(points[i]);
 
-            // Origem do raio bem antes da zona de interesse, na mesma coluna (x,y) do
-            // ponto do corpo, disparado ao longo do eixo de profundidade de referência.
-            Vector3 rayOriginLocal = new Vector3(local.x, local.y, -wallHalfDepth * 3f);
+            // Zera a coordenada ao longo do eixo de profundidade e recua bem antes do
+            // CENTRO REAL da mesh nesse eixo (não da origem do objeto — importante para
+            // meshes importadas com o pivot descentrado), mantendo as outras duas
+            // coordenadas (a "coluna" do ponto do corpo) exatamente onde estavam.
+            Vector3 rayOriginLocal = local - Vector3.Scale(local, localDepthAxis)
+                + localDepthAxis * (depthAxisCenterLocal - wallHalfDepth * 3f);
             Vector3 rayOriginWorld = wallT.TransformPoint(rayOriginLocal);
-            Vector3 rayDirWorld = wallT.forward;
 
             // Aceita QUALQUER collider dentro da Wall Layer Mask — Mesh Collider, Box
             // Collider, Capsule Collider, etc. Já não exige que seja exatamente o
