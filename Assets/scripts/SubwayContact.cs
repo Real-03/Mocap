@@ -1,19 +1,18 @@
 using BeatStyleGame;
 using TMPro;
 using UnityEngine;
+using UnityVicon;
 
 public class SubwayContact : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Got Here");
-        BodyPart bodyPart = other.GetComponent<BodyPart>();
-
-        if (bodyPart == null)
+        if (other.GetComponentInParent<SubjectScript>() == null)
             return;
+        Debug.Log("Got Here");
 
         FindAnyObjectByType<SpawnManager>().gameObject.SetActive(false);
-        FindAnyObjectByType<TextMeshProUGUI>().gameObject.SetActive(true);
+        FindAnyObjectByType<TextMeshProUGUI>().fontSize = 188;
         Destroy(gameObject);
     }
 }
