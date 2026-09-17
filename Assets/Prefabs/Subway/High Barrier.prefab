@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8142736232755087183}
   - component: {fileID: 2762903009359182103}
+  - component: {fileID: 3799395953348319328}
+  - component: {fileID: 5079157600977370456}
   m_Layer: 0
   m_Name: High Barrier
   m_TagString: Untagged
@@ -49,6 +51,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.ParedeInfo
   tipo: 0
   forma: 3
+--- !u!114 &3799395953348319328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159307169146104537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc6fa0848497364dbc518c3b6b19b3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SubwayContact
+--- !u!65 &5079157600977370456
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5159307169146104537}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.95, y: 1.9064547, z: 0.12}
+  m_Center: {x: 0, y: 2.1195233, z: 0}
 --- !u!1 &5865943010645376402
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +192,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -269,7 +304,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -381,7 +416,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
