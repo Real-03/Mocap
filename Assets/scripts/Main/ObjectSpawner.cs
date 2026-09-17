@@ -14,6 +14,11 @@ public class ObjectSpawner : MonoBehaviour
     private int currentbomb;
 
     [SerializeField]
+    private float spawnRadius;
+    [SerializeField]
+    private float spawnHeight;
+
+    [SerializeField]
     // Ammount of time between the first and second spawn
     // The actual time gets quicker over time
     private int timerMultiplier;
@@ -25,6 +30,8 @@ public class ObjectSpawner : MonoBehaviour
     private IEnumerator Ready()
     {
         DisableButton();
+
+        // Start spawning objects
         for (int i = 0; i < totalCount; i++)
         {
             Spawn();
@@ -34,16 +41,44 @@ public class ObjectSpawner : MonoBehaviour
                     // Shorten the time for each spawn
                     / i+1);
         }
+        // Finish and enable next sequence
     }
 
     private void Spawn()
     {
+        if (currentCount <= 0)
+            return;
+
         int rand = Random.Range(0, totalCount);
-        if (rand)
+        if (rand - currentobj1 <= 0)
+        {
+            // Spawn obj1
+        }
+        else if (rand - currentobj1 - currentobj2 <= 0)
+        {
+            // Spawn obj 2
+        }
+        else
+        {
+            // Spawn bomb
+        }
+    }
+
+    private Vector3 GetCoordinates()
+    {
+        // Get the spawn angle
+        float angle = Random.Range(0, 2 * Mathf.PI);
+        // Get 2 points that are part of the circle
+        float posX = spawnRadius * Mathf.Cos(angle);
+        float posY = spawnRadius * Mathf.Sin(angle);
+        return new Vector3(
+            posX, 
+            posY, 
+            spawnHeight);
     }
 
     private void DisableButton()
     {
-
+        // Code to remove button
     }
 }
