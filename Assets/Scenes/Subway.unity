@@ -685,7 +685,7 @@ MonoBehaviour:
   indiceFaixa: 0
   permiteCubos: 0
   membrosCubosSuportados: 
-  tiposParedeSuportados: 02000000
+  tiposParedeSuportados: 020000000000000001000000
 --- !u!1 &782968224 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1645898859189091904, guid: 6316d8b93fc89054a8e9ac72dc0f4bb5, type: 3}
@@ -952,7 +952,7 @@ MonoBehaviour:
   indiceFaixa: 0
   permiteCubos: 0
   membrosCubosSuportados: 
-  tiposParedeSuportados: 02000000
+  tiposParedeSuportados: 020000000000000001000000
 --- !u!4 &1323292417
 Transform:
   m_ObjectHideFlags: 0
@@ -1158,8 +1158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.SpawnManager
   paredesPrefabs:
   - {fileID: 4506846782090760262, guid: 72fc4f70bb5c2ca40a65a8c21695795b, type: 3}
-  - {fileID: 6121327815713653233, guid: 390862d29e8de3c48a016561c707078b, type: 3}
-  - {fileID: 7781900777718764554, guid: 597c48b78c7feef4183b9c991c48caf9, type: 3}
+  - {fileID: 2975426326301288030, guid: d5f82cb7fa0e02e449d2a4ff011aca87, type: 3}
+  - {fileID: 5159307169146104537, guid: 1c5c13daf653b2c48bb8bc59a323e5f8, type: 3}
   cubosPrefabs: []
   pontosSpawn:
   - {fileID: 2134943618}
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   indiceFaixa: 0
   permiteCubos: 0
   membrosCubosSuportados: 
-  tiposParedeSuportados: 02000000
+  tiposParedeSuportados: 020000000000000001000000
 --- !u!4 &6102753397660033893
 Transform:
   m_ObjectHideFlags: 0
