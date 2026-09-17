@@ -2,43 +2,53 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// Liga o resultado do MirrorWallDetector a uma UI simples (UnityEngine.UI.Text).
+/// Mostra no ecrã a percentagem de erro (corpo em colisão com o obstáculo) do
+/// MirrorWallDetector atualmente ativo.
 ///
-/// Suporta os dois cenários mais comuns:
-/// 1) Mostrar a percentagem/estado ao vivo, atualizado a cada checkInterval.
-/// 2) Fazer uma verificação pontual num momento específico (ex.: quando um
-///    cronómetro chega a zero, ou a parede chega ao jogador) e mostrar
-///    PASSOU/FALHOU nesse instante.
+/// Como as paredes são geradas dinamicamente, o detector associado pode mudar ao
+/// longo do jogo — por isso a leitura é feita a cada frame (é só ler uma
+/// propriedade já calculada, não recalcula nada), e o detector pode ser trocado
+/// a qualquer momento com SetDetector(), por exemplo quando uma parede nova nasce.
 /// </summary>
 public class MirrorChallengeResultUI : MonoBehaviour
 {
+    [Header("Detector")]
+    [Tooltip("Pode ficar vazio no início e ser atribuído em runtime via SetDetector() quando a primeira parede for criada.")]
     [SerializeField] private MirrorWallDetector detector;
 
-    [Header("UI (opcional, para o estado ao vivo)")]
-    [Tooltip("Texto atualizado continuamente com a percentagem atual. Deixar vazio se não quiseres feedback ao vivo.")]
-    [SerializeField] private TMP_Text livePercentageText;
+    [Header("UI")]
+    [Tooltip("Texto atualizado continuamente com a percentagem de erro atual.")]
+    [SerializeField] private TMP_Text percentageText;
+    [Tooltip("Formato do texto. {0} = percentagem. Ex.: \"{0:F0}% de erro\".")]
+    [SerializeField] private string percentageFormat = "{0:F0}% de erro";
 
-    [Header("UI (para a verificação pontual)")]
-    [Tooltip("Texto onde aparece PASSOU / FALHOU quando TriggerFinalCheck() é chamado.")]
+    [Tooltip("Texto opcional onde aparece PASSOU / FALHOU quando TriggerFinalCheck() é chamado.")]
     [SerializeField] private TMP_Text finalResultText;
 
-    private void OnEnable()
+    [Header("Cores")]
+    [SerializeField] private Color passColor = Color.green;
+    [SerializeField] private Color failColor = Color.red;
+
+    /// <summary>
+    /// Troca o detector cuja percentagem está a ser mostrada — chamar isto sempre
+    /// que uma nova parede/obstáculo se torna o desafio atual do jogador.
+    /// </summary>
+    public void SetDetector(MirrorWallDetector newDetector)
     {
-        // Atualiza a UI ao vivo sempre que o detector recalcula a percentagem
-        // (a cada checkInterval, não por frame — por isso é barato).
-        detector.OnEvaluated += HandleLiveUpdate;
+        detector = newDetector;
+
+        if (finalResultText != null)
+        {
+            finalResultText.text = string.Empty;
+        }
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        detector.OnEvaluated -= HandleLiveUpdate;
-    }
+        if (detector == null || percentageText == null) return;
 
-    private void HandleLiveUpdate(bool passed, float percentage)
-    {
-        if (livePercentageText == null) return;
-        livePercentageText.text = $"{percentage:F0}% de erro";
-        livePercentageText.color = passed ? Color.green : Color.red;
+        percentageText.text = string.Format(percentageFormat, detector.CurrentCollidingPercentage);
+        percentageText.color = detector.LastCheckPassed ? passColor : failColor;
     }
 
     /// <summary>
@@ -46,22 +56,17 @@ public class MirrorChallengeResultUI : MonoBehaviour
     /// - quando um cronómetro do desafio chega a zero
     /// - quando a parede (a mover-se em direção ao jogador) chega à posição do jogador
     /// - ao carregar num botão de "Tentar"
-    ///
-    /// Liga isto a esse evento (Invoke de um Timer, OnTriggerEnter de uma zona,
-    /// OnClick de um Button, etc.) em vez de chamar isto por frame.
     /// </summary>
     public void TriggerFinalCheck()
     {
+        if (detector == null) return;
+
         bool passed = detector.CheckResult();
 
         if (finalResultText != null)
         {
             finalResultText.text = passed ? "PASSOU" : "FALHOU";
-            finalResultText.color = passed ? Color.green : Color.red;
+            finalResultText.color = passed ? passColor : failColor;
         }
-
-        Debug.Log(passed
-            ? $"Desafio superado! Erro: {detector.CurrentCollidingPercentage:F1}%"
-            : $"Desafio falhado. Erro: {detector.CurrentCollidingPercentage:F1}% (limite: 10%)");
     }
 }
