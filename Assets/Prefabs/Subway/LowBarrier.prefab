@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f5c0f022539a04dbcb92137d99ad53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BeatStyleGame.ParedeInfo
-  tipo: 2
+  tipo: 1
   forma: 3
 --- !u!1 &5692617829078911017
 GameObject:
