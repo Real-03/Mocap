@@ -64,10 +64,14 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
-    private Vector3 GetCoordinates()
+    private float GetAngle()
     {
         // Get the spawn angle
-        float angle = Random.Range(0, 2 * Mathf.PI);
+        return Random.Range(0, 2 * Mathf.PI);
+    }
+
+    private Vector3 GetCoordinates(float angle)
+    {
         // Get 2 points that are part of the circle
         float posX = spawnRadius * Mathf.Cos(angle);
         float posY = spawnRadius * Mathf.Sin(angle);
