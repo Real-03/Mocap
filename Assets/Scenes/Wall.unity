@@ -1438,7 +1438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00898c33756f94caafd87ca8fda2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Scripts::UnityVicon.SubjectScript
-  SubjectName: P1
+  SubjectName: P2
   Client: {fileID: 992756825}
 --- !u!1 &1480441333 stripped
 GameObject:
