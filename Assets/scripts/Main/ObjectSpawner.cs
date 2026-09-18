@@ -5,12 +5,20 @@ public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField]
     private int object1Count;
+    [SerializeField]
+    private GameObject obj1Prefab;
     private int currentobj1;
+    
     [SerializeField]
     private int object2Count;
+    [SerializeField]
+    private GameObject obj2Prefab;
     private int currentobj2;
+
     [SerializeField]
     private int bombCount;
+    [SerializeField]
+    private GameObject bombPrefab;
     private int currentbomb;
 
     [SerializeField]
@@ -20,7 +28,7 @@ public class ObjectSpawner : MonoBehaviour
 
     [SerializeField]
     // Ammount of time between the first and second spawn
-    // The actual time gets quicker over time
+    // The actual time gets quicker after each spawn
     private int timerMultiplier;
 
     // Total amount of objects that can spawn
@@ -46,25 +54,36 @@ public class ObjectSpawner : MonoBehaviour
 
     private void Spawn()
     {
+        float spawnAngle = GetRandomAngle();
+        Vector3 spawnPos = GetCoordinates(spawnAngle);
+
         if (currentCount <= 0)
             return;
 
         int rand = Random.Range(0, totalCount);
+        
+        GameObject objectToSpawn = null;
         if (rand - currentobj1 <= 0)
         {
-            // Spawn obj1
+            // Spawn obj 1
+            objectToSpawn = obj1Prefab;
         }
         else if (rand - currentobj1 - currentobj2 <= 0)
         {
             // Spawn obj 2
+            objectToSpawn = obj2Prefab;
         }
         else
         {
             // Spawn bomb
+            objectToSpawn = bombPrefab;
         }
+        GameObject spawnedObj = 
+            Instantiate(obj1Prefab, spawnPos, Quaternion.identity);
+
     }
 
-    private float GetAngle()
+    private float GetRandomAngle()
     {
         // Get the spawn angle
         return Random.Range(0, 2 * Mathf.PI);
