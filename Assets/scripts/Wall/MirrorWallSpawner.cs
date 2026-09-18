@@ -6,6 +6,8 @@ using System.Collections;
 /// em direção ao jogador (via MirrorWallMover) e liga automaticamente cada uma
 /// ao MirrorChallengeResultUI, sem precisares de configurar nada à mão por parede.
 ///
+/// Suporta múltiplos prefabs de parede — cada spawn escolhe um deles.
+///
 /// O prefab da parede só precisa de ter, ele próprio:
 /// - um Collider (Mesh, Box, etc.) com a forma/abertura do desafio;
 /// - o MirrorWallDetector (auto-configura-se sozinho, como já sabes);
@@ -13,9 +15,20 @@ using System.Collections;
 /// </summary>
 public class MirrorWallSpawner : MonoBehaviour
 {
-    [Header("Prefab e spawn")]
-    [Tooltip("Prefab da parede. Tem de ter MirrorWallMover (e, por causa do RequireComponent, também já vem com MirrorWallDetector e um Collider).")]
-    [SerializeField] private MirrorWallMover wallPrefab;
+    private enum PrefabSelectionMode
+    {
+        Random,
+        Sequential
+    }
+
+    [Header("Prefabs e spawn")]
+    [Tooltip("Lista de prefabs de parede possíveis. Cada um tem de ter MirrorWallMover (e, por causa do RequireComponent, também já vem com MirrorWallDetector e um Collider).")]
+    [SerializeField] private MirrorWallMover[] wallPrefabs;
+    [Tooltip("Como escolher o prefab a cada spawn: Random (aleatório) ou Sequential (segue a ordem da lista e repete do início).")]
+    [SerializeField] private PrefabSelectionMode selectionMode = PrefabSelectionMode.Random;
+    [Tooltip("Se ativo, evita repetir o mesmo prefab duas vezes seguidas quando o modo é Random (ignorado no modo Sequential).")]
+    [SerializeField] private bool avoidImmediateRepeatOnRandom = true;
+
     [Tooltip("Onde cada parede nova aparece. A rotação do spawn point também é aplicada à parede.")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float spawnInterval = 4f;
@@ -34,6 +47,8 @@ public class MirrorWallSpawner : MonoBehaviour
     [SerializeField] private MirrorChallengeResultUI resultUI;
 
     private Coroutine spawnLoop;
+    private int nextSequentialIndex = 0;
+    private int lastRandomIndex = -1;
 
     private void OnEnable()
     {
@@ -55,18 +70,21 @@ public class MirrorWallSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Gera uma parede imediatamente. Podes chamar isto manualmente (ex.: para o
-    /// primeiro desafio começar já) em vez de esperares pelo primeiro intervalo.
+    /// Gera uma parede imediatamente, escolhendo um prefab da lista. Podes chamar
+    /// isto manualmente (ex.: para o primeiro desafio começar já) em vez de
+    /// esperares pelo primeiro intervalo.
     /// </summary>
     public void SpawnWall()
     {
-        if (wallPrefab == null || spawnPoint == null)
+        MirrorWallMover prefabToSpawn = PickPrefab();
+
+        if (prefabToSpawn == null || spawnPoint == null)
         {
-            Debug.LogWarning("[MirrorWallSpawner] Wall Prefab ou Spawn Point não atribuídos.", this);
+            Debug.LogWarning("[MirrorWallSpawner] Nenhum Wall Prefab válido ou Spawn Point não atribuído.", this);
             return;
         }
 
-        MirrorWallMover mover = Instantiate(wallPrefab, spawnPoint.position, spawnPoint.rotation);
+        MirrorWallMover mover = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
 
         Vector3 direction = manualMoveDirection;
 
@@ -84,5 +102,35 @@ public class MirrorWallSpawner : MonoBehaviour
             resultUI.SetDetector(detector);
             mover.OnReachedPlayer += _ => resultUI.TriggerFinalCheck();
         }
+    }
+
+    /// <summary>
+    /// Escolhe qual prefab usar no próximo spawn, de acordo com o modo selecionado.
+    /// </summary>
+    private MirrorWallMover PickPrefab()
+    {
+        if (wallPrefabs == null || wallPrefabs.Length == 0)
+            return null;
+
+        if (wallPrefabs.Length == 1)
+            return wallPrefabs[0];
+
+        if (selectionMode == PrefabSelectionMode.Sequential)
+        {
+            MirrorWallMover chosen = wallPrefabs[nextSequentialIndex];
+            nextSequentialIndex = (nextSequentialIndex + 1) % wallPrefabs.Length;
+            return chosen;
+        }
+
+        // Random
+        int index;
+        do
+        {
+            index = Random.Range(0, wallPrefabs.Length);
+        }
+        while (avoidImmediateRepeatOnRandom && index == lastRandomIndex);
+
+        lastRandomIndex = index;
+        return wallPrefabs[index];
     }
 }

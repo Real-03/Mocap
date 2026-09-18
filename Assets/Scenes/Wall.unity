@@ -2131,7 +2131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead614ecf1635754a81a270c7f88c6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorWallSpawner
-  wallPrefab: {fileID: 2748768973145767968, guid: ccb973d42b655da4985f984784f9f921, type: 3}
+  wallPrefabs:
+  - {fileID: 2748768973145767968, guid: ccb973d42b655da4985f984784f9f921, type: 3}
+  - {fileID: 4590142991491116669, guid: 56c9a8864df7fca4c9600328b3034d2c, type: 3}
+  selectionMode: 0
+  avoidImmediateRepeatOnRandom: 0
   spawnPoint: {fileID: 8099228513147039072}
   spawnInterval: 15
   moveSpeed: 0.5
