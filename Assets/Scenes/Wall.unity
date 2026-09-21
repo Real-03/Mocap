@@ -2129,8 +2129,8 @@ MonoBehaviour:
   selectionMode: 0
   avoidImmediateRepeatOnRandom: 1
   spawnPoint: {fileID: 8099228513147039072}
-  spawnInterval: 15
-  moveSpeed: 0.5
+  spawnInterval: 9
+  moveSpeed: 1
   autoDirectionTowardsPlayer: 1
   manualMoveDirection: {x: 0, y: 0, z: 1}
   ignoreHeightDifference: 1

@@ -131,5 +131,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MirrorWallMover
   moveDirection: {x: 0, y: 0, z: 1}
-  moveSpeed: 0.5
-  destroyDistanceAfterPlayer: 3
+  moveSpeed: 1
+  destroyDistanceAfterPlayer: 0.5
